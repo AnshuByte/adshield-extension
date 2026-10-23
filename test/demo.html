@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AdShield test page</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 0; padding: 24px 24px 140px; background: #0b1220; color: #e6edf7; }
+    h1 { font-size: 20px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+    button, a.btn {
+      display: inline-block; padding: 10px 14px; border-radius: 8px; border: 1px solid #2d3f5f;
+      background: #16223a; color: #e6edf7; text-decoration: none; font: inherit; cursor: pointer;
+    }
+    .download-zone { position: relative; display: inline-block; padding: 10px; border: 1px dashed #2d3f5f; border-radius: 10px; }
+    #AdsCreativeRedirect { position: absolute; inset: 0; z-index: 2147483645; cursor: pointer; background: rgba(0,0,0,0.01); }
+    #mm-sticky-ad { position: fixed; left: 0; right: 0; bottom: 0; z-index: 999999; background: #05070b; border-top: 1px solid #2d3f5f; padding: 14px; text-align: center; }
+    .ads-core-ads-offerwall { margin: 16px 0; padding: 18px; border: 1px solid #5b2630; background: #2a1015; color: #f87171; border-radius: 10px; }
+    .checks { margin-top: 18px; padding: 12px; border: 1px solid #22304a; border-radius: 10px; background: #111a2b; }
+    .checks code { color: #22d3ee; }
+  </style>
+</head>
+<body>
+  <h1>AdShield test page</h1>
+  <p>Each control below reproduces a real pattern seen on streaming/piracy sites.</p>
+
+  <div class="checks">
+    <div>Real button clicks: <code id="realCount">0</code></div>
+    <div>Overlay clicks reached the button: <code id="overlayCount">0</code></div>
+  </div>
+
+  <!-- 1. Transparent click layer over the download button (AdsBoosters pattern) -->
+  <h2>Transparent click layer</h2>
+  <div class="download-zone">
+    <button id="fakeDownload">Download 720p</button>
+    <div id="AdsCreativeRedirect"></div>
+  </div>
+
+  <!-- 2. Popunder from a normal button -->
+  <h2>Popunder</h2>
+  <div class="row">
+    <button id="popunderListed">Play (known ad host)</button>
+    <button id="popunderUnlisted">Play (unknown ad host)</button>
+    <button id="popupSameSite">Share (same-site popup)</button>
+    <a id="legitLink" class="btn" href="/ok.html" target="_blank" rel="noopener">Legit new-tab link</a>
+    <button id="realButton">Real button</button>
+  </div>
+
+  <!-- 3. Visible offerwall container -->
+  <div class="ads-core-ads-offerwall">Offerwall ad container (should be hidden)</div>
+
+  <!-- 4. Sticky footer ad -->
+  <div id="mm-sticky-ad">Sticky footer ad banner (should be hidden)</div>
+
+  <script>
+    const realCount = document.getElementById("realCount");
+    const overlayCount = document.getElementById("overlayCount");
+    let realClicks = 0;
+
+    document.getElementById("realButton").addEventListener("click", () => {
+      realClicks += 1;
+      realCount.textContent = String(realClicks);
+    });
+
+    // The layered button should be unreachable while the transparent div exists.
+    document.getElementById("fakeDownload").addEventListener("click", () => {
+      overlayCount.textContent = String(Number(overlayCount.textContent) + 1);
+      window.open("https://popads.net/serve?zone=1", "_blank");
+    });
+
+    document.getElementById("popunderListed").addEventListener("click", () => {
+      window.open("https://popads.net/serve?zone=2", "_blank");
+    });
+
+    document.getElementById("popunderUnlisted").addEventListener("click", () => {
+      window.open("https://unlisted-ads.example.test/pop", "_blank");
+    });
+
+    document.getElementById("popupSameSite").addEventListener("click", () => {
+      window.open("/ok.html", "_blank");
+    });
+
+    // Popunder triggered on mousedown (no click gesture).
+    let fired = false;
+    document.addEventListener("mousedown", () => {
+      if (fired) return;
+      fired = true;
+      window.open("https://unlisted-ads.example.test/down", "_blank");
+    });
+
+    // Exit-confirm nag.
+    window.addEventListener("beforeunload", () => "stay on page");
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdShield — Settings</title>
+  <link rel="stylesheet" href="../ui.css" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="o-shell">
+
+    <!-- Page header ─────────────────────────────── -->
+    <header class="o-header">
+      <div class="o-brand">
+        <img src="../../icons/icon48.png" alt="" width="32" height="32" class="o-icon" />
+        <div class="col" style="gap:1px">
+          <h1 class="o-title">AdShield</h1>
+          <p class="o-sub t-muted">Blocks redirect ads, popunders and transparent click-hijack layers.</p>
+        </div>
+      </div>
+      <span class="badge neutral" id="saveState">Saved</span>
+    </header>
+
+    <!-- Protection ──────────────────────────────── -->
+    <section class="o-card">
+      <p class="o-section-label t-label">Protection</p>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Enable AdShield</span>
+          <span class="o-opt-desc t-muted">Master switch — applies to every site.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="enabled" /><span></span></span>
+      </label>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Block popunders &amp; forced tabs</span>
+          <span class="o-opt-desc t-muted">Stops <code>window.open</code>, blank-window chains and background popups.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="blockPopunders" /><span></span></span>
+      </label>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Neutralize invisible click layers</span>
+          <span class="o-opt-desc t-muted">Transparent, pinned elements that swallow clicks and redirect you.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="blockOverlays" /><span></span></span>
+      </label>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Hide known ad containers</span>
+          <span class="o-opt-desc t-muted">Removes sticky footers, offerwalls and injected ad slots.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="cosmetic" /><span></span></span>
+      </label>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Block exit-confirm nags</span>
+          <span class="o-opt-desc t-muted">Drops <code>beforeunload</code> traps that keep you on the page.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="blockExitNags" /><span></span></span>
+      </label>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Strict popup mode</span>
+          <span class="o-opt-desc t-muted">Block every scripted popup, even ones triggered by your own click.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="strictMode" /><span></span></span>
+      </label>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Allow cross-domain popups</span>
+          <span class="o-opt-desc t-muted">Only needed for SSO / OAuth windows that open on another domain.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="allowCrossSitePopups" /><span></span></span>
+      </label>
+
+      <label class="o-opt o-opt--select">
+        <div class="o-opt-body">
+          <span class="o-opt-title">When an invisible layer is found</span>
+          <span class="o-opt-desc t-muted">Neutralize keeps layout intact; Remove deletes the node entirely.</span>
+        </div>
+        <select id="overlayMode">
+          <option value="neutralize">Neutralize (click-through)</option>
+          <option value="remove">Remove element</option>
+        </select>
+      </label>
+    </section>
+
+    <!-- Network filters ─────────────────────────── -->
+    <section class="o-card">
+      <p class="o-section-label t-label">Network filters</p>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Block ad networks</span>
+          <span class="o-opt-desc t-muted">Display and video ad servers — DoubleClick, Taboola, Outbrain, Criteo…</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="mainstreamAds" /><span></span></span>
+      </label>
+
+      <label class="o-opt">
+        <div class="o-opt-body">
+          <span class="o-opt-title">Block trackers &amp; link shorteners</span>
+          <span class="o-opt-desc t-muted">Analytics, push-prompt services and redirect shorteners. Off by default.</span>
+        </div>
+        <span class="switch"><input type="checkbox" id="trackers" /><span></span></span>
+      </label>
+
+      <p class="note t-xs t-muted">
+        The popunder/overlay network list (recrampwiped, AdsBoosters, traffmovie, cloaked banner
+        hosts and 30+ similar domains) is always active while AdShield is on.
+      </p>
+    </section>
+
+    <!-- Site rules ──────────────────────────────── -->
+    <section class="o-card">
+      <p class="o-section-label t-label">Site rules</p>
+
+      <label class="o-field">
+        <span class="o-opt-title">Disabled sites</span>
+        <span class="o-field-desc t-xs t-muted">One hostname per line — AdShield stays off on these sites.</span>
+        <textarea id="allowlist" rows="4" spellcheck="false" placeholder="example.com"></textarea>
+      </label>
+
+      <label class="o-field">
+        <span class="o-opt-title">Extra blocked domains</span>
+        <span class="o-field-desc t-xs t-muted">One hostname per line — added on top of the built-in lists.</span>
+        <textarea id="customBlocklist" rows="4" spellcheck="false" placeholder="ads.example.net"></textarea>
+      </label>
+    </section>
+
+    <!-- Backup ──────────────────────────────────── -->
+    <section class="o-card">
+      <p class="o-section-label t-label">Backup</p>
+
+      <div class="o-backup-row row wrap">
+        <button id="export" class="ghost">Export settings</button>
+        <button id="import" class="ghost">Import settings</button>
+        <button id="manage" class="ghost">Manage extension</button>
+        <button id="reset" class="danger" style="margin-left:auto">Reset to defaults</button>
+        <input type="file" id="importFile" accept="application/json" hidden />
+      </div>
+
+      <p class="note t-xs t-muted">
+        Works on Chrome, Brave and Edge (Manifest V3, Chromium 111+). Load the extension folder
+        via each browser's Extensions page — no build step required.
+      </p>
+    </section>
+
+  </div><!-- /o-shell -->
+  <script src="options.js"></script>
+</body>
+</html>

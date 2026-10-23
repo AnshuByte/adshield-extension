@@ -1,0 +1,15 @@
+{
+  "name": "adshield-extension",
+  "version": "1.0.0",
+  "description": "Stops redirect ads, popunders and transparent click-hijack layers.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build-rules.mjs",
+    "test": "node tools/test-extension.mjs",
+    "icons": "powershell -ExecutionPolicy Bypass -File tools/make-icons.ps1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdShield</title>
+  <link rel="stylesheet" href="../ui.css" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- Header ─────────────────────────────────────── -->
+  <header class="p-header">
+    <div class="p-brand">
+      <img src="../../icons/icon32.png" alt="" width="18" height="18" class="p-icon" />
+      <span class="p-name">AdShield</span>
+      <span class="p-ver t-dim mono" id="version">v1.0.0</span>
+    </div>
+    <button id="globalPill" class="p-toggle on" title="Toggle protection everywhere">
+      <i class="dot"></i>
+      <span id="globalText">On</span>
+    </button>
+  </header>
+
+  <!-- Site ───────────────────────────────────────── -->
+  <section class="p-site">
+    <div class="row between">
+      <span class="mono p-host" id="host">—</span>
+      <span class="badge neutral" id="sitePill">Checking</span>
+    </div>
+    <div class="p-site-row row between">
+      <div class="col" style="gap:2px">
+        <span class="t-sm">Protect this site</span>
+        <span class="t-xs t-muted">Turn off if a site breaks</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="siteToggle" aria-label="Protection on this site" />
+        <span></span>
+      </label>
+    </div>
+  </section>
+
+  <!-- Stats ──────────────────────────────────────── -->
+  <section class="p-stats">
+    <div class="p-stat">
+      <span class="p-num" id="netCount">0</span>
+      <span class="p-lbl">Blocked</span>
+    </div>
+    <span class="p-sep"></span>
+    <div class="p-stat">
+      <span class="p-num" id="ovCount">0</span>
+      <span class="p-lbl">Layers</span>
+    </div>
+    <span class="p-sep"></span>
+    <div class="p-stat">
+      <span class="p-num" id="popCount">0</span>
+      <span class="p-lbl">Popups</span>
+    </div>
+  </section>
+
+  <!-- Recent ─────────────────────────────────────── -->
+  <section class="p-recent">
+    <div class="row between p-recent-hd">
+      <span class="t-label">Recent blocks</span>
+      <span class="t-xs t-dim">this tab</span>
+    </div>
+    <ul class="p-log" id="recent">
+      <li class="p-empty t-xs t-muted">Nothing yet on this page.</li>
+    </ul>
+  </section>
+
+  <!-- Footer ─────────────────────────────────────── -->
+  <footer class="p-footer">
+    <button id="rescan" class="ghost">Rescan</button>
+    <button id="reload" class="ghost">Reload</button>
+    <button id="options" class="primary" style="margin-left:auto">Settings →</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

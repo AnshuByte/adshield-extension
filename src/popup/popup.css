@@ -1,0 +1,198 @@
+/* ── Popup shell ──────────────────────────────────────────────────── */
+body {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Header ───────────────────────────────────────────────────────── */
+.p-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--b1);
+}
+
+.p-brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.p-icon { border-radius: 4px; }
+
+.p-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.01em;
+}
+
+.p-ver {
+  font-size: 10.5px;
+}
+
+/* Power toggle button */
+.p-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.p-toggle.on {
+  background: var(--green-bg);
+  border-color: var(--green-bd);
+  color: var(--green);
+}
+.p-toggle.off {
+  background: var(--amber-bg);
+  border-color: var(--amber-bd);
+  color: var(--amber);
+}
+.p-toggle:hover { filter: brightness(1.18); }
+
+/* ── Site section ─────────────────────────────────────────────────── */
+.p-site {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--b1);
+}
+
+.p-host {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--t1);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.p-site-row {
+  padding-top: 10px;
+  border-top: 1px solid var(--b1);
+}
+
+/* ── Stats ────────────────────────────────────────────────────────── */
+.p-stats {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--b1);
+}
+
+.p-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 14px 8px;
+}
+
+.p-num {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--t1);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--mono);
+  letter-spacing: -0.02em;
+}
+
+.p-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+.p-sep {
+  width: 1px;
+  background: var(--b1);
+  margin: 10px 0;
+}
+
+/* ── Recent blocks ────────────────────────────────────────────────── */
+.p-recent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--b1);
+}
+
+.p-recent-hd { margin-bottom: 2px; }
+
+.p-log {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 106px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+.p-log::-webkit-scrollbar { width: 3px; }
+.p-log::-webkit-scrollbar-track { background: transparent; }
+.p-log::-webkit-scrollbar-thumb {
+  background: var(--b2);
+  border-radius: 99px;
+}
+
+.p-empty { padding: 4px 0; }
+
+/* Injected by popup.js */
+.p-log li:not(.p-empty) {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 8px;
+  border-radius: var(--r-sm);
+  background: var(--s2);
+  border: 1px solid var(--b1);
+  overflow: hidden;
+}
+
+.p-log .tag {
+  flex-shrink: 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t3);
+  font-family: var(--mono);
+  background: var(--s3);
+  border: 1px solid var(--b2);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
+.p-log .what {
+  flex: 1;
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--t2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────── */
+.p-footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px 12px;
+}

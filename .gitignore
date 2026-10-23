@@ -1,0 +1,9 @@
+# Chrome generates these at runtime — never commit them
+_metadata/
+
+# Node
+node_modules/
+
+# Local test artefacts
+*.user.js
+adshield-settings.json

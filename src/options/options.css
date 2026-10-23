@@ -1,0 +1,138 @@
+/* ── Page shell ───────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+.o-shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Page header ──────────────────────────────────────────────────── */
+.o-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 0 20px;
+  border-bottom: 1px solid var(--b1);
+  margin-bottom: 4px;
+}
+
+.o-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.o-icon { border-radius: 8px; }
+
+.o-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.o-sub {
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 380px;
+}
+
+/* Save state badge — JS sets class to 'badge on/saving/neutral' */
+#saveState { min-width: 58px; justify-content: center; }
+
+/* ── Section card ─────────────────────────────────────────────────── */
+.o-card {
+  background: var(--s1);
+  border: 1px solid var(--b1);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.o-section-label {
+  padding: 10px 16px 8px;
+  border-bottom: 1px solid var(--b1);
+  background: var(--s2);
+}
+
+/* ── Option row ───────────────────────────────────────────────────── */
+.o-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 13px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--b1);
+  transition: background 0.1s;
+}
+.o-opt:last-child { border-bottom: none; }
+.o-opt:hover { background: var(--s2); }
+
+.o-opt--select {
+  cursor: default;
+}
+.o-opt--select:hover { background: transparent; }
+
+.o-opt-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.o-opt-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t1);
+  line-height: 1.3;
+}
+
+.o-opt-desc {
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.o-opt-desc code {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  background: var(--s3);
+  border: 1px solid var(--b2);
+  border-radius: 3px;
+  padding: 0 4px;
+  color: var(--t2);
+}
+
+/* The .note paragraph inside a card */
+.o-card .note {
+  padding: 0 16px 14px;
+  line-height: 1.5;
+}
+
+/* ── Textarea fields ──────────────────────────────────────────────── */
+.o-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--b1);
+}
+.o-field:last-child { border-bottom: none; }
+
+.o-field-desc { line-height: 1.4; }
+
+/* ── Backup row ───────────────────────────────────────────────────── */
+.o-backup-row {
+  padding: 13px 16px;
+  gap: 6px;
+  border-bottom: 1px solid var(--b1);
+}

@@ -1,0 +1,27 @@
+/* Cosmetic rules. Only active when the user keeps "hide ad containers" on. */
+
+html[data-adshield-cosmetic="1"] #mm-sticky-ad,
+html[data-adshield-cosmetic="1"] #AdsCreativeRedirect,
+html[data-adshield-cosmetic="1"] .ads-core-ads-offerwall,
+html[data-adshield-cosmetic="1"] [id^="ads-core-"],
+html[data-adshield-cosmetic="1"] ins.adsbygoogle,
+html[data-adshield-cosmetic="1"] .adsbygoogle,
+html[data-adshield-cosmetic="1"] #downloadBtn,
+html[data-adshield-cosmetic="1"] #downloadBtn2,
+html[data-adshield-cosmetic="1"] .button-bodyad,
+html[data-adshield-cosmetic="1"] [class*="buttonPress-"],
+html[data-adshield-cosmetic="1"] .a728_90,
+html[data-adshield-cosmetic="1"] .a728_90q,
+html[data-adshield-cosmetic="1"] iframe[src*="a-ads.com"] {
+  display: none !important;
+}
+
+/* Neutralized invisible layers stay in the layout but stop eating clicks. */
+[data-adshield-neutralized="1"],
+[style*="2147483647"],
+[style*="2147483646"],
+[style*="2147483645"],
+[style*="z-index: 2147483647"],
+[style*="z-index:2147483647"] {
+  pointer-events: none !important;
+}
